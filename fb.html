@@ -19,8 +19,8 @@
     }
   }
 
-  function checkLoginState() {
-    FB.getLoginStatus(function(response) {
+  function login() {
+    FB.login(function(response){
       statusChangeCallback(response);
     });
   }
@@ -63,7 +63,7 @@
 
 <h3>Facebook Login</h3>
 <div id="welcome" style="display:none">
-    <button>Facebook Login</button>
+    <button onclick="login();">Facebook Login</button>
 </div>
 <div id="main" style="display:none">
   Hello Friend
