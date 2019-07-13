@@ -53,7 +53,7 @@
 
   function start() {
     //呼叫 Graph API：FB.api(連線網址,回呼函式(結果));
-    FB.api('/me', function(response) {//me是id代稱
+    FB.api('/me?fields=id,name,email', function(response) {//me是id代稱
     console.log(response);
     let main=document.querySelector("#main");
     main.innerHTML=response.name;
