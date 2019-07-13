@@ -14,6 +14,7 @@
     main.style.display="none";
     if (response.status === 'connected') {//使用者已授權，開始應用程式
       main.style.display="block";
+      start();
     } else {//使用者未授權，鼓勵使用者授權
         welcome.style.display="block";
     }
@@ -50,12 +51,10 @@
   }(document, 'script', 'facebook-jssdk'));
 
 
-  function testAPI() {
-    console.log('Welcome!  Fetching your information.... ');
-    FB.api('/me', function(response) {
-      console.log('Successful login for: ' + response.name);
-      document.getElementById('status').innerHTML =
-        'Thanks for logging in, ' + response.name + '!';
+  function start() {
+    //呼叫 Graph API：FB.api(連線網址,回呼函式(結果));
+    FB.api('https://graph.facebook.com/me', function(response) {
+    console.log(response);
     });
   }
 </script>
@@ -74,4 +73,10 @@
     你的主網址(host)
     你的主網址/檔案名稱
     https://chen126888.github.io/fb.html?隨便打幾個字(跳過快取)
--->
+    抓到使用者 2478929508826343 的資料
+    https://graph.facebook.com/2478929508826343?access_token=金鑰
+    取得金鑰
+
+    "EAAGO25wJN2wBAMThgncwZCKAQdMzfFJzzWiH810XNfoUyr9XvR7zliGv3nwcSR9zpW6sLijqUhgyQsmSWs0KhlZCIR7AqObnGSrZBcxcXXOBq1svdWUicC1NmhWdIWX326sdhrrl099DZAyCwm1UnTV79jheoJl8YqWthBpZAy40NJgWRdN0OGO6PaNykas8cRDWWP6PRRwZDZD"
+    OAuth 2.0
+  -->
