@@ -13,10 +13,9 @@
     welcome.style.display="none";
     main.style.display="none";
     if (response.status === 'connected') {//使用者已授權，開始應用程式
-      testAPI();
+      main.style.display="block";
     } else {//使用者未授權，鼓勵使用者授權
-      document.getElementById('status').innerHTML = 'Please log ' +
-        'into this app.';
+        welcome.style.display="block";
     }
   }
 
