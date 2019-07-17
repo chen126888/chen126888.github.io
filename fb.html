@@ -23,7 +23,7 @@
   function login() {
     FB.login(function(response){
       statusChangeCallback(response);
-    },{scope:"email,user_gender,user_posts"});
+    },{scope:"email,user_gender,user_posts,manage_page"});
   }
   window.fbAsyncInit = function() {
     //初始化 Facebook 套件
@@ -59,6 +59,10 @@
     });
     //抓使用者的塗鴉牆
     FB.api('/me/feed/',function(response){
+      console.log(response);
+    });
+    //抓使用者的粉絲專業
+    FB.api('/me/accounts',function(response){
       console.log(response);
     });
   }
