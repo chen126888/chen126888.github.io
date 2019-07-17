@@ -55,7 +55,11 @@
     FB.api('/me?fields=id,name,email,gender', function(response) {//me是id代稱
     console.log(response);
     let main=document.querySelector("#main");
-    main.innerHTML=response.name+"<img src='https://graph.facebook.com/"+response.id+"/picture?type=large' />";
+    main.innerHTML=response.name+"<img src='https://graph.facebook.com/"+response.id+"/picture?' />";
+    });
+    //抓使用者的塗鴉牆
+    FB.api('/me/feed/',function(response){
+      console.log(response);
     });
   }
 </script>
