@@ -52,11 +52,12 @@
 
   function start() {
     //呼叫 Graph API：FB.api(連線網址,回呼函式(結果));
-    FB.api('/me?fields=id,name,email,gender', function(response) {//me是id代稱
+    /*FB.api('/me?fields=id,name,email,gender', function(response) {//me是id代稱
     console.log(response);
     let main=document.querySelector("#main");
     main.innerHTML=response.name+"<img src='https://graph.facebook.com/"+response.id+"/picture?' />";
     });
+    */
     //抓使用者的塗鴉牆
     FB.api('/me/feed/',function(response){
       console.log(response);
@@ -64,17 +65,26 @@
     //抓使用者的粉絲專業
     FB.api('/me/accounts',function(response){
       console.log(response);
-      let pageToken=response.data[0].access_token;
-      let pageId=response.data[0].id;
-      FB.api("/"+pageId+"/feed?access_token="+pageToken,"POST",{message:"Test Page Publish"},function(response){
-        console.log(response);
-      });
+      pageToken=response.data[0].access_token;
+      pageId=response.data[0].id;
+      console.log(pageToken,pageId);
     });
   }
+  let pageToken,pageId;
+  function post(){
+    let message=document.querySelector("#message").value;
+    FB.api("/"+pageId+"/feed?access_token="+pageToken,"POST",{message:message},function(response){
+        console.log(response);
+      });
+  };
 </script>
 
 
 <h3>Facebook Login</h3>
+<div id="main" style="display:none">
+  Message<input id="message" /><button onclick="post();">Post</button>
+
+</div>
 <div id="welcome" style="display:none">
     <button onclick="login();">Facebook Login</button>
 </div>
