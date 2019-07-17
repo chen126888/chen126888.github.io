@@ -23,7 +23,7 @@
   function login() {
     FB.login(function(response){
       statusChangeCallback(response);
-    },{scope:"email,user_gender"});
+    },{scope:"email,user_gender,user_posts"});
   }
   window.fbAsyncInit = function() {
     //初始化 Facebook 套件
