@@ -23,9 +23,8 @@
   function login() {
     FB.login(function(response){
       statusChangeCallback(response);
-    },{scope:"email"});
+    },{scope:"email,user_gender"});
   }
-
   window.fbAsyncInit = function() {
     //初始化 Facebook 套件
     FB.init({
@@ -53,7 +52,7 @@
 
   function start() {
     //呼叫 Graph API：FB.api(連線網址,回呼函式(結果));
-    FB.api('/me?fields=id,name,email', function(response) {//me是id代稱
+    FB.api('/me?fields=id,name,email,gender', function(response) {//me是id代稱
     console.log(response);
     let main=document.querySelector("#main");
     main.innerHTML=response.name;
