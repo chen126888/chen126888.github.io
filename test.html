@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Facebook Firebase</title>
+    <script src="https://www.gstatic.com/firebasejs/6.3.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.3.1/firebase-auth.js"></script>
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+          apiKey: "AIzaSyCk8tmQKbsHPhDkx43WQOgbhs0cpZ4cNb4",
+          authDomain: "test-js-6e56c.firebaseapp.com",
+          databaseURL: "https://test-js-6e56c.firebaseio.com",
+          projectId: "test-js-6e56c",
+          storageBucket: "",
+          messagingSenderId: "574567901409",
+          appId: "1:574567901409:web:be9fedd6e73d2c8b"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        let provider = new firebase.auth.FacebookAuthProvider();
+        provider.addScope("email,user_birthday");
+        function login(){
+        firebase.auth().signInWithPopup(provider).then(function(result) {
+  // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+        var token = result.credential.accessToken;
+  // The signed-in user info.
+        var user = result.user;
+        console.log(user);
+  // ...
+        }).catch(function(error) {
+  // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+  // The email of the user's account used.
+        var email = error.email;
+  // The firebase.auth.AuthCredential type that was used.
+        var credential = error.credential;
+  // ...
+        });
+        }
+      </script>
+</head>
+<body>
+    <h3>Facebook Login</h3>
+    <button onclick="Login();">Login</button>    
+</body>
+</html>
